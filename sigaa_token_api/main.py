@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from auth import create_token
+
 app = FastAPI()
 
 @app.post("/token")
 def login():
-    print('Passou por aqui...')
-    return {"Endpoint funcionando!"}
+    token = create_token()
+    return {"access_token": token, "token_type": "bearer"}
